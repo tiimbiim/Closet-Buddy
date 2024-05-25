@@ -8,6 +8,7 @@
     tools:context=".MainActivity">
 
     <FrameLayout
+        android:id = "@+id/frame_layout"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
@@ -16,7 +17,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10sp"
+            android:columnCount="2"
+            android:rowCount="2"
+            >
+
+            <Button
+                android:id="@+id/button"
+                android:layout_height="300sp"
+                android:layout_columnWeight="1"
+                android:text="Button"
+                android:background="@color/button_background"
+                android:textSize = '18sp'
+                android:layout_margin="5sp"/>
+
+        </GridLayout>
     </FrameLayout>
+
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
@@ -26,4 +47,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu = '@menu/bottom_nav_menu'/>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

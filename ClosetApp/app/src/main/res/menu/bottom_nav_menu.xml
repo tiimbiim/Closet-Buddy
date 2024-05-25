@@ -2,10 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:id = '@+id/wardrobe'
-        android:icon = '@drawable/baseline_checkroom_24'
+        android:icon = '@drawable/ic_baseline_checkroom_24'
         android:title="Wardrobe" />
 
-    <item android:id = '@+id/outfit'
-        android:icon = '@drawable/baseline_folder_24'
-        android:title= "Outfit" />
+    <item android:id = '@+id/outfits'
+        android:icon = '@drawable/ic_baseline_folder_24'
+        android:title= "Outfits" />
 </menu>
