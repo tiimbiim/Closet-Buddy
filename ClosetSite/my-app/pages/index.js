@@ -15,7 +15,7 @@ export default function Home() {
         <link rel ="stylesheet" href = 'Home.module.css'/>
       </Head>
       
-      <body className={styles.body}>
+      <div className={styles.body}>
         <div className = {styles.hero}>
           <div className={styles.btnbox}>
             <button>Scroll n' Style</button>
@@ -24,7 +24,7 @@ export default function Home() {
             <button>Save with AI</button>
           </div>
         </div>
-      </body>
+      </div>
     </>
   );
 }
