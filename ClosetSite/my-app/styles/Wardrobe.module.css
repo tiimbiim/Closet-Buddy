@@ -1,0 +1,14 @@
+@import url(https://fonts.googleapis.com/css?family=Comfortaa);
+
+.category{
+    color: black;
+    padding-top: 30px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    font-size: 20px;
+    font-family: Comfortaa;
+}
+
+.imageSetting{
+    border-radius: 75px;
+}

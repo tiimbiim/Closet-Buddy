@@ -1,3 +1,6 @@
+@import url(https://fonts.googleapis.com/css?family=Comfortaa);
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css);
+
 .hero{
   width: 80%;
   height: 450px;
@@ -7,9 +10,10 @@
 
 .btnbox{
   display: flex;
-  border-bottom: 2px solid #ccc;
+  padding-top: 5px;
+  border-bottom: 2px solid black;
   margin: auto;
-  width: 71%;
+  width: 100%;
 }
 
 .btnbox button{
@@ -18,10 +22,23 @@
   outline: none;
   cursor: pointer;
   padding: 14px 22px;
-  margin: 0 20px;
-  font-size: 20px;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  padding-left: 59px;
+  padding-right: 59px;
+  align-items: center;
+  font-size: 18px;
+  font-family: Comfortaa;
   font-weight: bold;
+}
+
+.btnbox button:hover{
+  color: goldenrod;
+}
+
+.header{
+  font-family: Comfortaa;
+  text-align: center;
+  padding-top: 15px;
+  font-size: 20px;
 }
 
 .title{
