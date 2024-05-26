@@ -26,7 +26,6 @@ function ImageUpload() {
     }
 
     useEffect(() => {
-
         listAll(ref(imageDB, "files")).then (imgs=>{
             console.log(imgs)
             imgs.items.forEach(val => {
