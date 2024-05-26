@@ -21,18 +21,20 @@ const wardrobe = () => {
     return (
         <>
             <Navbar/>
-            <h1 className={styles.category}>TOPS</h1>
-            <Slider {...settings}>
-                {images.map(image => <Image className={styles.imageSetting} src={image} width={200} height={400}/>)}
-            </Slider>
-            <h1 className={styles.category}>BOTTOMS</h1>
-            <Slider {...settings}>
-                {images.map(image => <Image className={styles.imageSetting} src={image} width={200} height={400}/>)}
-            </Slider>
-            <h1 className={styles.category}>SHOES</h1>
-            <Slider {...settings}>
-                {images.map(image => <Image className={styles.imageSetting} src={image} width={200} height={400} />)}
-            </Slider>
+            <div className={styles.hero}>
+                <h1 className={styles.category}>TOPS</h1>
+                <Slider {...settings}>
+                    {images.map(image => <Image className={styles.imageSetting} src={image} width={200} height={450}/>)}
+                </Slider>
+                <h1 className={styles.category}>BOTTOMS</h1>
+                <Slider {...settings}>
+                    {images.map(image => <Image className={styles.imageSetting} src={image} width={200} height={450}/>)}
+                </Slider>
+                <h1 className={styles.category}>SHOES</h1>
+                <Slider {...settings}>
+                    {images.map(image => <Image className={styles.imageSetting} src={image} width={200} height={450} />)}
+                </Slider>
+            </div>
         </>
     )
 }

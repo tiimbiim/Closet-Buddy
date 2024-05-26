@@ -31,6 +31,7 @@ const scrollStyle = () => {
                     <Slider {...settings}>
                         {images.map(image => <Image className={styles.imageSetting} src={image} width={200} height={400}/>)}
                     </Slider>
+                    <button className={styles.button}>Save Outfit</button>
                 </div>
             </div>
         </>
