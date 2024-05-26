@@ -18,8 +18,11 @@
     "mysql": "^2.18.1",
     "mysql2": "^3.9.7",
     "next": "^14.2.3",
+    "node": "^18.20.3",
     "react": "^18",
     "react-dom": "^18",
+    "react-event-observer": "^0.5.11",
+    "react-router": "^6.23.1",
     "react-router-dom": "^6.23.1",
     "uuid": "^9.0.1"
   },

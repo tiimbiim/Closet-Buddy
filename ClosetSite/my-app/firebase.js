@@ -3,7 +3,7 @@
 import { getApps, initializeApp } from 'firebase/app';
 import { getStorage } from'firebase/storage';
 import { getAuth } from "firebase/auth";
-import 'firebase/firestore';
+import ReactObserver from 'react-event-observer'
 
 const firebaseConfig = {
   // Your Firebase configuration
@@ -24,6 +24,8 @@ const firebaseConfig = {
 
 
 const app = initializeApp(firebaseConfig);
+
+export const firebaseObserver = ReactObserver();
 
 export const imageDB = getStorage(app);
 export const auth = getAuth(app);
