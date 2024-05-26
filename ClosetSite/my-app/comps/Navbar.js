@@ -13,7 +13,9 @@ const Navbar = () => {
                 </a>
                 <button>Scroll n' Style</button>
                 <button>Saved Outfits</button>
-                <button><i class='fa fa-star'></i> Save with AI</button>
+                <a href='ai_page'>
+                    <button><i class='fa fa-star'></i> Save with AI</button>
+                </a>
             </div>
         </div>
     );
