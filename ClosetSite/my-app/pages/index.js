@@ -4,10 +4,31 @@ import Navbar from "@/comps/Navbar";
 import { BiCloset } from "react-icons/bi";
 import { GiClothes } from "react-icons/gi";
 import { IoPhonePortraitOutline } from "react-icons/io5";
+import { onAuthStateChanged, getAuth } from "firebase/auth";
+import { auth } from "../firebase";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+
+  const currentAuth = getAuth();
+
+  onAuthStateChanged(currentAuth, (user) => {
+
+    if(user) {
+
+        const uid = user.uid;
+        console.log(uid, 'has logged in');
+
+    }
+    else {
+
+        console.log('NO ONE IS LOGGED IN RIGHT NOW');
+
+    }
+
+})
+
   return (
     <>
       <Navbar/>

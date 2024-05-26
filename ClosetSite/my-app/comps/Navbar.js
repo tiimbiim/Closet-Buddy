@@ -1,9 +1,53 @@
 import styles from "@/styles/Home.module.css";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import { useEffect, useState } from "react";
+import { auth } from '../firebase'
 
 const Navbar = () => {
+
+    const [userPresent, setUserPresent] = useState(false);
+
+    const currentAuth = getAuth();
+
+    useEffect(() => {
+
+        const unsubscribe = onAuthStateChanged(currentAuth, (user) => {
+
+            if(user) {
+                const uid = user.uid;
+                console.log(uid, 'has logged in');
+                setUserPresent(true);
+            }
+            else {
+                console.log('NO ONE IS LOGGED IN RIGHT NOW');
+            }
+
+        });
+
+        return() => unsubscribe();
+
+    }, [auth]);
+
+    const handleSignOut = () => {
+
+        signOut(auth).then(val => {
+            console.log(val, 'has logged out');
+            setUserPresent(false);
+        })
+
+    }
+
     return (
         <div>
             <h1 className={styles.header}>CLOSETBUDDY</h1>
+            <div className={styles.signin}>
+                {!userPresent ? (
+                    <a href='/login' className={styles.signinText}>Sign In</a>
+                ) : (
+
+                    <a onClick={handleSignOut} className={styles.signinText}>Sign Out</a>
+                )}
+            </div>
             <div className={styles.btnbox}>
                 <a href='/'>
                     <button>Home</button>

@@ -1,0 +1,31 @@
+@import url(https://fonts.googleapis.com/css?family=Comfortaa);
+
+
+.row{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+.activeColor{
+    padding-top:5px;
+    height: 30px;
+    width: 10%;
+    border: 2px solid grey;
+    cursor: pointer;
+}
+.pointer{
+    cursor: pointer;
+}
+.App {
+    text-align: center;
+}
+.link{
+    font-family: Comfortaa;
+    display: block;
+    margin-top: 20px;
+    text-decoration: none;
+    cursor: pointer;
+}
+.link:visited{
+    color:rgb(95, 95, 95);
+}

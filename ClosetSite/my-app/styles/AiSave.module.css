@@ -14,11 +14,13 @@
     padding: 40px;
     border-radius: 15px;
     text-align: center;
+    align-items: center;
+    display: grid;
+    place-items: center;
 }
 
 .card h1{
     background-color: transparent;
-
     font-family: Comfortaa;
 }
 
@@ -34,12 +36,21 @@
     font-family: Comfortaa;
 }
 
-.card input{
-    display: none;
-}
+/* .card input{
+    display: block;
+} */
 
 .icon{
     background-color: transparent;
     font-size: 100px;
     padding-bottom: 10px;
+}
+
+.uploadButton{
+    width: 50%;
+    height: 50px;
+    border-radius: 5px;
+    background-color: black;
+    font-family: Comfortaa;
+    color: white;
 }
