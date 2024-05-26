@@ -13,12 +13,13 @@ const Login = () => {
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 console.log(userCredential);
+                console.log(userCredential.user.uid);
             })
             .catch((error) => {
                 console.log(error);
             })
 
-            
+
     };
 
     return ( 
