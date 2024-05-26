@@ -60,13 +60,13 @@ function login() {
                 </div>
             )}
             {!isAuthenticated && (
-                <h1>{login?'Sign In': 'Sign Up'}</h1>
+                <h1 className={styles.header}>{login?'Sign In': 'Sign Up'}</h1>
             )}
             {!isAuthenticated ? (
                 <form onSubmit={(e)=>handleSubmit(e, login?'signin':'signup')}>
-                    <input name="email" placeholder="email"/> <br/>
-                    <input name="password" type="password" placeholder="password"/> <br/>
-                    <button>{login?'Sign In': 'Sign Up'}</button>
+                    <input name="email" placeholder="email" className={styles.inputArea}/> <br/>
+                    <input name="password" type="password" placeholder="password" className={styles.inputArea}/> <br/>
+                    <button className={styles.button}>{login?'Sign In': 'Sign Up'}</button>
                 </form>
             ) : (
                 <div>

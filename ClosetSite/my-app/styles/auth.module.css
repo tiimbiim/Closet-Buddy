@@ -5,8 +5,10 @@
     align-items: center;
     display: flex;
     justify-content: center;
+    padding: 10px;
 }
 .activeColor{
+    font-family: Comfortaa;
     padding-top:5px;
     height: 30px;
     width: 10%;
@@ -14,6 +16,7 @@
     cursor: pointer;
 }
 .pointer{
+    font-family: Comfortaa;
     cursor: pointer;
 }
 .App {
@@ -28,4 +31,24 @@
 }
 .link:visited{
     color:rgb(95, 95, 95);
+}
+.inputArea {
+    width: 250px;
+    height: 30px;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+}
+.header{
+    padding: 15px;
+    font-family: Comfortaa;
+}
+.button{
+    width: 175px;
+    height: 45px;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    font-family: Comfortaa;
+    text-align: center;
 }
