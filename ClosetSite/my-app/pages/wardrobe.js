@@ -1,23 +1,23 @@
-import styles from "@/styles/Wardrobe.module.css"
-import Navbar from "@/comps/navbar";
+import styles from "@/styles/Wardrobe.module.css";
+import React, {useEffect} from 'react';
+import Navbar from "@/comps/Navbar";
+import Image from "next/image";
 
 
 const wardrobe = () => {
+    const images = ['https://truewerk.com/cdn/shop/files/t1_werkpants_mens_olive_flat_lay_4825e693-f588-4813-bff0-1d4c46ce82ce.jpg?v=1713822726&width=2400', 'https://imgs.michaels.com/MAM/assets/1/726D45CA1C364650A39CD1B336F03305/img/89929EBC63DE42EA9701E67C8B731990/10460172.jpg']
+
     return (
         <>
             <Navbar/>
-            <div className = {styles.carousel}>
-                <div class = 'carousel__item'>Content#1</div>
-                <div class = 'carousel__item'>Content#2</div>
-                <div class = 'carousel__item'>Content#3</div>
-                <div class = 'carousel__nav'>
-                    <span class='carousel__button'></span>
-                    <span class='carousel__button'></span>
-                    <span class='carousel__button'></span>
-                </div>
-            </div>
+            {images.map(image => <Image src={image} width={250} height={250}/>)}
+            <div id='column1'></div>
+            <div id='column2'></div>
+            <div id='column3'></div>
+            
         </>
     )
 }
+
 
 export default wardrobe;
