@@ -14,16 +14,18 @@
   border-bottom: 2px solid black;
   margin: auto;
   width: 100%;
+  justify-content: center;
 }
 
 .btnbox button{
   background: transparent;
   border: none;
   outline: none;
+  margin-left: 1em;
+  margin-right: 1em;
   cursor: pointer;
   padding: 14px 22px;
-  padding-left: 59px;
-  padding-right: 59px;
+ 
   align-items: center;
   font-size: 18px;
   font-family: Comfortaa;
