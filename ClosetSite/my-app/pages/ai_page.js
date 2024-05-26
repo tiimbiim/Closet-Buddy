@@ -3,7 +3,7 @@ import React, {useEffect, useState} from 'react';
 import Navbar from "@/comps/Navbar";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import {FaUpload} from 'react-icons/fa6';
+import { FaUpload } from 'react-icons/fa6';
 import { getDownloadURL, ref, uploadBytes, listAll } from 'firebase/storage';
 import { getAuth, onAuthStateChanged } from 'firebase/auth' 
 import { imageDB, auth } from '../firebase';
@@ -79,7 +79,7 @@ const ai_save = () => {
 
     return (
         <>
-            <Navbar/>
+            <Navbar />
             <div className={styles.hero}>
                 <div className={styles.card}>
                     {uploadFileURL ?  imgURL.map(dataVal=> <img src={dataVal} height="200px" width="200px"/> ) : <FaUpload className={styles.icon}/>}
@@ -98,3 +98,45 @@ const ai_save = () => {
 
 
 export default ai_save;
+// import React, { useState } from 'react';
+// import axios from 'axios';
+
+// function App() {
+//     const [file, setFile] = useState(null);
+
+//     const onFileChange = event => {
+//         setFile(event.target.files[0]);
+//     };
+
+//     const onFileUpload = () => {
+//         const formData = new FormData();
+//         formData.append("file", file);
+//         axios.post("http://localhost:5000/remove-background", formData, {
+//             headers: {
+//                 'Content-Type': 'multipart/form-data'
+//             },
+//             responseType: 'blob'  // Important for handling the binary image response
+//         })
+//             .then(response => {
+//                 const url = URL.createObjectURL(new Blob([response.data]));
+//                 const link = document.createElement('a');
+//                 link.href = url;
+//                 link.setAttribute('download', 'result.png');
+//                 document.body.appendChild(link);
+//                 link.click();
+//                 document.body.removeChild(link); // Clean up
+//             })
+//             .catch(error => console.log(error));
+//     };
+
+//     return (
+//         <div>
+//             <input type="file" onChange={onFileChange} />
+//             <button onClick={onFileUpload}>
+//                 Upload!
+//             </button>
+//         </div>
+//     );
+// }
+
+// export default App;
