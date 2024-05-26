@@ -8,8 +8,8 @@ export default function Home() {
   return (
     <>
       <Navbar/>
-      <h1 class={styles.title}>Welcome to ClosetBuddy!</h1>
-      <p class={styles.description}>Your on the go closet, where you can plan outfits and keep track of clothes</p>
+      <h1 className={styles.title}>Welcome to ClosetBuddy!</h1>
+      <p className={styles.description}>Your on the go closet, where you can plan outfits and keep track of clothes</p>
     </>
   );
 }
