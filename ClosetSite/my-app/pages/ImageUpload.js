@@ -6,8 +6,6 @@ import { imageDB } from '../firebase';
 import {v4} from "uuid";
 
 
-
-
 function ImageUpload() {
     
     const [img, setImg] =useState('');
