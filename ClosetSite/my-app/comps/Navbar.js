@@ -11,8 +11,12 @@ const Navbar = () => {
                 <a href='wardrobe'>
                     <button>Wardrobe</button>
                 </a>
-                <button>Scroll n' Style</button>
-                <button>Saved Outfits</button>
+                <a href='scrollStyle'>
+                    <button>Scroll n' Style</button>
+                </a>
+                <a href='saved_outfits'>
+                    <button>Saved Outfits</button>
+                </a>
                 <a href='ai_page'>
                     <button><i class='fa fa-star'></i> Save with AI</button>
                 </a>
