@@ -1,7 +1,9 @@
 import styles from "@/styles/Home.module.css";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { useEffect, useState } from "react";
-import { auth } from '../firebase'
+import { auth } from '../firebase.config'
+import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
+
 
 const Navbar = () => {
 
@@ -44,8 +46,8 @@ const Navbar = () => {
                 {!userPresent ? (
                     <a href='/login' className={styles.signinText}>Sign In</a>
                 ) : (
-
-                    <a onClick={handleSignOut} className={styles.signinText}>Sign Out</a>
+                    
+                    <a href='/' onClick={handleSignOut} className={styles.signinText}>Sign Out</a>
                 )}
             </div>
             <div className={styles.btnbox}>

@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { FaUpload } from 'react-icons/fa6';
 import { getDownloadURL, ref, uploadBytes, listAll } from 'firebase/storage';
 import { getAuth, onAuthStateChanged } from 'firebase/auth' 
-import { imageDB, auth } from '../firebase';
+import { imageDB, auth } from '../firebase.config';
 import {v4} from "uuid";
 
 
@@ -65,12 +65,15 @@ const ai_save = () => {
 
                     setImgURL((data) => [...data, url]);
                     console.log("Image uploaded successfully:", url);
+                    alert("Image uploaded successfully!");
                 }).catch(error => {
                     console.error("Error uploading image: ", error);
+                    alert("Error uploading image: ", error);
                 })
 
             }).catch(error => {
                 console.error("Error uploading image: ", error);
+                alert("Error uploading image: ", error);
             })
 
         }

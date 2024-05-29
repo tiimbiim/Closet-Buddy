@@ -4,7 +4,7 @@ import Navbar from "@/comps/Navbar";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from 'react-slick';
-import { imageDB } from "@/firebase";
+import { imageDB } from "@/firebase.config";
 import { getAuth, onAuthStateChanged } from "firebase/auth"
 import { getDownloadURL, ref, uploadBytes, listAll } from 'firebase/storage';
 import Image from "next/image";
@@ -46,6 +46,9 @@ const wardrobe = ({ auth }) => {
                 .catch((error) => {
                     alert(error.code);
                 });
+
+            }
+            else {
 
             }
 
