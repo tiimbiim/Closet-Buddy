@@ -16,6 +16,8 @@ const ai_save = () => {
     const [img, setImg] = useState('');
     const [imgURL, setImgURL] = useState([]);
     const [user, setUser] = useState([]);
+    const [selectedFile, setSelectedFile] = useState()
+    const [preview, setPreview] = useState()
 
     const currentAuth = getAuth();
 
@@ -47,11 +49,6 @@ const ai_save = () => {
         return() => unsubscribe();
         
     }, [currentAuth]);
-
-    // function handleSubmitFile(e){
-    //     console.log(e.target.files);
-    //     setUploadFileURL(URL.createObjectURL(e.target.files[0]))
-    // }
     
     const handleUploadFile = () => {
 
@@ -80,17 +77,44 @@ const ai_save = () => {
 
     }
 
+    useEffect(() => {
+
+        if(!selectedFile) {
+            setPreview(undefined);
+            return;
+        }
+
+        const objectURL = URL.createObjectURL(selectedFile)
+        setPreview(objectURL)
+
+        return() => URL.revokeObjectURL(objectURL)
+
+    }, [selectedFile])
+
+    const onSelectFile = e => {
+        if (!e.target.files || e.target.files.length === 0) {
+            setSelectedFile(undefined)
+            return
+        }
+
+        // I've kept this example simple by using the first image instead of multiple
+        setSelectedFile(e.target.files[0])
+        setImg(e.target.files[0]);
+    }
+
+
     return (
         <>
             <Navbar />
             <div className={styles.hero}>
                 <div className={styles.card}>
-                    {uploadFileURL ?  imgURL.map(dataVal=> <img src={dataVal} height="200px" width="200px"/> ) : <FaUpload className={styles.icon}/>}
+                    {/* {uploadFileURL ?  imgURL.map(dataVal=> <img src={dataVal} height="200px" width="200px"/> ) : <FaUpload className={styles.icon}/>} */}
                     {/* <h1>something</h1> */}
                     {/* <FaUpload className={styles.icon} id='default'/> */}
                     {/* <input type='file' accept='image/jpeg, image/png, image/jpg' id= 'input-file' onClick={handleUploadFile}/> */}
                     {/* <label for='input-file'>upload image</label> <br/> */}
-                    <input className={styles.selectFileButton} type='file' accept='image/jpeg, image/png, image/jpg' onChange={(e) => setImg(e.target.files[0])}/>
+                    {selectedFile && <img src={preview} height={250} width={250} />}
+                    <input className={styles.selectFileButton} type='file' accept='image/jpeg, image/png, image/jpg' onChange={onSelectFile}/>
                     <button className = {styles.uploadButton} onClick={handleUploadFile}>upload image</button>
                 </div>
             </div>

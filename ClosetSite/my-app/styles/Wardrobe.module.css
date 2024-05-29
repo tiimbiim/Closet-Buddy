@@ -19,3 +19,24 @@
 .imageSetting{
     border-radius: 75px;
 }
+
+.banner{
+    padding-top: 20px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    display:flex;
+}
+.bannerText{
+    padding-right: 10px;
+}
+.bannerLink{
+    padding-right: 10px;
+    text-decoration: none;
+    color:#b8860b;
+    font-size: 24px;
+    font-weight: bold;
+}
+.bannerLink:visited{
+    color:#b8860b;
+}

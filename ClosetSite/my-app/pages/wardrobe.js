@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from 'react-slick';
 import { imageDB } from "@/firebase.config";
 import { getAuth, onAuthStateChanged } from "firebase/auth"
-import { getDownloadURL, ref, uploadBytes, listAll } from 'firebase/storage';
+import { getDownloadURL, ref, uploadBytes, listAll, list } from 'firebase/storage';
 import Image from "next/image";
 
 const settings = {      //https://react-slick.neostack.com/docs/example/ for me -tim
@@ -25,15 +25,22 @@ const wardrobe = ({ auth }) => {
    //const [img, setImg] = useState('');
     const [imgURL, setImgURL] = useState([]);
     const [user, setUser] = useState([]);
+    const [imagesUploaded, hasImages] = useState(true);
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(currentAuth, (user) => {
             if(user) {
                 setUser(user);
                 const uid = user.uid;
-                listAll(ref(imageDB, `user/${uid}/`)).then (imgs => {
-
+                list(ref(imageDB, `user/${uid}/`)).then (imgs => {
+                    
                     console.log(imgs);
+                    
+                    if(imgs.items.length === 0) { 
+                        console.log("user has no images uploaded");
+                        hasImages(false); 
+                    }
+
                     imgs.items.forEach((val) => {
                         getDownloadURL(val).then((url) => {
 
@@ -58,11 +65,19 @@ const wardrobe = ({ auth }) => {
         
     }, [currentAuth]);
 
+
     return (
         <>
             <Navbar/>
             <div className={styles.hero}>
+                {!imagesUploaded && (
+                    <div className={styles.banner}>
+                        <h2 className={styles.bannerText}>Your wardrobe is empty!</h2>
+                        <a className={styles.bannerLink} href="/ai_page"> Upload</a>
+                        <h2 className={styles.bannerText}> your clothes to get started</h2>
+                    </div>
 
+                )}
                 <h1 className={styles.category}>TOPS</h1>
                 <Slider {...settings}>
                     {imgURL.map(dataVal => <div><img src={dataVal} height="450px" width="450px" /></div>)}

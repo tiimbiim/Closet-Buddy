@@ -26,6 +26,7 @@ const scrollStyle = () => {
    //const [img, setImg] = useState('');
     const [imgURL, setImgURL] = useState([]);
     const [user, setUser] = useState([]);
+    const [imagesUploaded, hasImages] = useState(true);
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(currentAuth, (user) => {
@@ -33,6 +34,11 @@ const scrollStyle = () => {
                 setUser(user);
                 const uid = user.uid;
                 listAll(ref(imageDB, `user/${uid}/`)).then (imgs => {
+
+                    if(imgs.items.length === 0) { 
+                        console.log("user has no images uploaded");
+                        hasImages(false); 
+                    }
 
                     console.log(imgs);
                     imgs.items.forEach((val) => {
@@ -74,18 +80,25 @@ const scrollStyle = () => {
     return (
         <>
             <Navbar/>
+            {!imagesUploaded && (
+                <div className={styles.banner}>
+                    <h2 className={styles.bannerText}>Your wardrobe is empty!</h2>
+                    <a className={styles.bannerLink} href="/ai_page"> Upload</a>
+                    <h2 className={styles.bannerText}> your clothes to get started</h2>
+                </div>
+            )}
             <div className={styles.hero}>
                 <div className={styles.slideColumn}>
                     <Slider {...settings}>
-                        {imgURL.map(dataVal => <div><img src={dataVal} height="450px" width="450px" /></div>)}
+                        {imgURL.map(dataVal => <div><img src={dataVal} height="250px" width="250px" /></div>)}
                         {/* {images.map(image => <Image className={styles.imageSetting} src={image} width={200} height={400}/>)} */}
                     </Slider>
                     <Slider {...settings}>
-                        {imgURL.map(dataVal => <div><img src={dataVal} height="450px" width="450px" /></div>)}
+                        {imgURL.map(dataVal => <div><img src={dataVal} height="250px" width="250px" /></div>)}
                         {/* {images.map(image => <Image className={styles.imageSetting} src={image} width={200} height={400}/>)} */}
                     </Slider>
                     <Slider {...settings}>
-                        {imgURL.map(dataVal => <div><img src={dataVal} height="450px" width="450px" /></div>)}
+                        {imgURL.map(dataVal => <div><img src={dataVal} height="250px" width="250px" /></div>)}
                         {/* {images.map(image => <Image className={styles.imageSetting} src={image} width={200} height={400}/>)} */}
                     </Slider>
                     <button className={styles.button} onClick={saveOutfit}>Save Outfit</button>
