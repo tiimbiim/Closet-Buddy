@@ -3,7 +3,6 @@ import React, {useState, useEffect} from 'react'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from 'react-slick';
-import Image from "next/image";
 import { getAuth, onAuthStateChanged } from "firebase/auth"
 import { getDownloadURL, ref, uploadBytes, listAll, list } from 'firebase/storage';
 import {imageDB} from "../firebase.config"
