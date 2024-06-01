@@ -16,7 +16,7 @@ const settings = {      //https://react-slick.neostack.com/docs/example/ for me 
     slidesToScroll: 1,
 };
 
-const ImageCarousel = ({auth}) => {
+const ImageCarouselWardrobe = ({auth}) => {
 
     const currentAuth = getAuth();
 
@@ -76,4 +76,4 @@ const ImageCarousel = ({auth}) => {
      );
 }
  
-export default ImageCarousel;
+export default ImageCarouselWardrobe;

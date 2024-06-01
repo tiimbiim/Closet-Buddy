@@ -6,17 +6,17 @@ import { getAuth } from "firebase/auth";
 const firebaseConfig = {
   // Your Firebase configuration
 
-    apiKey: "AIzaSyDOt2W5L9zwNkY-8yz5tJNLQFw7BbL8xao",
+    apiKey: process.env.NEXT_PUBLIC_API_KEY,
   
-    authDomain: "closetbuddy-c85b0.firebaseapp.com",
+    authDomain: process.env.NEXT_PUBLIC_AUTH_DOMAIN,
   
-    projectId: "closetbuddy-c85b0",
+    projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
   
-    storageBucket: "closetbuddy-c85b0.appspot.com",
+    storageBucket: process.env.NEXT_PUBLIC_STORAGE_BUCKET,
   
-    messagingSenderId: "1058464916657",
+    messagingSenderId: process.env.NEXT_PUBLIC_MESSAGING_SENDER_ID,
   
-    appId: "1:1058464916657:web:ca2ba09947b8934deaee90"
+    appId: process.env.NEXT_PUBLIC_APP_ID
   
 };
 

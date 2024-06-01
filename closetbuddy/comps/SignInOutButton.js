@@ -3,6 +3,7 @@ import React, {useState, useEffect} from 'react'
 import { auth } from '../firebase.config'
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import styles from "@/app/page.module.css"
+import { useRouter } from "next/navigation"
 
 
 export default function SignInOutButton() {
@@ -10,6 +11,7 @@ export default function SignInOutButton() {
     const [userPresent, setUserPresent] = useState(false);
 
     const currentAuth = getAuth();
+    const router = useRouter();
 
     useEffect(() => {
 
@@ -35,6 +37,8 @@ export default function SignInOutButton() {
         signOut(auth).then(val => {
             console.log(val, 'has logged out');
             setUserPresent(false);
+            router.push("/")
+            
         })
 
     }

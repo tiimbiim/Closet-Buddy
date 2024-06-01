@@ -1,6 +1,6 @@
 import styles from "@/app/wardrobe/wardrobe.module.css"
 import Navbar from "../../../comps/Navbar";
-import ImageCarousel from "../../../comps/ImageCarousel";
+import ImageCarouselWardrobe from "../../../comps/ImageCarouselWardrobe";
 
 
 
@@ -11,11 +11,11 @@ const wardrobe = () => {
             <Navbar/>
             <div className={styles.hero}>
                 <h1 className={styles.category}>TOPS</h1>
-                <ImageCarousel />
+                <ImageCarouselWardrobe />
                 <h1 className={styles.category}>BOTTOMS</h1>
-                <ImageCarousel />
+                <ImageCarouselWardrobe />
                 <h1 className={styles.category}>SHOES</h1>
-                <ImageCarousel />
+                <ImageCarouselWardrobe />
             </div>
         </>
 

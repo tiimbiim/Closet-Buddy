@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import { auth } from "../../../firebase.config";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, getAuth, onAuthStateChanged } from "firebase/auth";
 import styles from "@/app/loginPage/login.module.css"
+import { permanentRedirect, redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 
 export default function LoginPage() {
@@ -11,6 +13,7 @@ export default function LoginPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const currentAuth = getAuth();
+  const router = useRouter();
 
   onAuthStateChanged(currentAuth, (user) => {
 
@@ -38,6 +41,7 @@ export default function LoginPage() {
           createUserWithEmailAndPassword(auth, email, password).then(data=> {
               console.log(data, "authData");
               setIsAuthenticated(true);
+              router.push("/");
           }).catch(err => {
               alert(err.code)
           })
@@ -46,6 +50,7 @@ export default function LoginPage() {
           signInWithEmailAndPassword(auth, email, password).then(data=> {
               console.log(data, "authData");
               setIsAuthenticated(true);
+              router.push("/");
           }).catch(err => {
               alert(err.code)
           })
@@ -65,18 +70,11 @@ export default function LoginPage() {
       {!isAuthenticated && (
           <h1 className={styles.header}>{login?'Sign In': 'Sign Up'}</h1>
       )}
-      {!isAuthenticated ? (
           <form onSubmit={(e)=>handleSubmit(e, login?'signin':'signup')}>
               <input name="email" placeholder="email" className={styles.inputArea}/> <br/>
               <input name="password" type="password" placeholder="password" className={styles.inputArea}/> <br/>
               <button className={styles.button}>{login?'Sign In': 'Sign Up'}</button>
           </form>
-      ) : (
-          <div>
-              <h3 className={styles.link}>Thank you for signing in! You can now start customizing your wardrobe!</h3>
-              <a href="/" className={styles.link}>Click to return to Home</a>
-          </div>
-      )}
     </div>
 
 

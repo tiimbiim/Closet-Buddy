@@ -1,0 +1,44 @@
+.hero{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+} 
+
+.column{
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: center;
+}
+
+/* .hero{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.columnLeft{
+    width: 500px;
+}
+
+.columnRight{
+    width: 500px;
+}
+
+.tab{
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: white;
+}
+
+.tab h1{
+    margin-left: 20px;
+    background-color: transparent;
+} */
