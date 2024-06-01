@@ -1,0 +1,108 @@
+@import url(https://fonts.googleapis.com/css?family=Comfortaa);
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css);
+
+.hero{
+  width: 80%;
+  height: 450px;
+  position: relative;
+  margin: 100px auto;
+}
+
+.btnbox{
+  display: flex;
+  /* padding-top: 5px; */
+  border-bottom: 2px solid black;
+  margin: auto;
+  width: 100%;
+  justify-content: center;
+}
+
+.btnbox button{
+  background: transparent;
+  border: none;
+  outline: none;
+  margin-left: 1em;
+  margin-right: 1em;
+  cursor: pointer;
+  padding: 14px 22px;
+  align-items: center;
+  font-size: 18px;
+  font-family: Comfortaa;
+  font-weight: bold;
+}
+
+.btnbox button:hover{
+  color: goldenrod;
+}
+
+.title{
+  text-align: center;
+  display: block;
+  font-size: 4em;
+  font-weight: bold;
+  font-family: Comfortaa;
+  padding-top: 25px;
+  color: black
+}
+
+.description{
+  text-align: center;
+  font-family: Comfortaa;
+  font-size: 1.3em;
+}
+
+.list{
+  font-family: Comfortaa;
+  text-align: center;
+  padding-top: 5px;
+  font-size: 15px;
+}
+
+.icon{
+  font-family: Comfortaa;
+  text-align: center;
+  padding-top: 10px;
+  font-size: 50px;
+  color: #b8860b
+}
+
+.image{
+  font-family: Comfortaa;
+  text-align: center;
+  padding-top: 10px;
+  font-size: 5px;
+}
+.signin{
+  text-align: right;
+  padding-right: 45px;
+  font-size: 20px;
+}
+.signinText{
+  text-decoration: none;
+  font-family: Comfortaa;
+  font-weight: bold;
+  color:black;
+  cursor: pointer;
+}
+.signinText button {
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 20px;
+  font-family: Comfortaa;
+  font-weight: bold;
+}
+.signinText button:hover {
+  color: goldenrod;
+}
+.signinText:visited{
+  color: black;
+}
+
+.header{
+  font-family: Comfortaa;
+  text-align: center;
+  font-size: 18px;
+  padding-top: 20px;
+}
