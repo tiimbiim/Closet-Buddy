@@ -1,6 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import { getStorage } from'firebase/storage';
-import { getAuth } from "firebase/auth";
+import { getAuth, setPersistence, browserLocalPersistence } from "firebase/auth";
+import { getFirestore } from "firebase/firestore"
 
 
 const firebaseConfig = {
@@ -23,5 +24,10 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
+export const clothesDB = getFirestore(app);
 export const imageDB = getStorage(app);
 export const auth = getAuth(app);
+
+(async () => {
+  await setPersistence(auth, browserLocalPersistence);
+})();

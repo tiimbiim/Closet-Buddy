@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
 
-  const [login, setLogin] = useState(false);
+  const [login, setLogin] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const currentAuth = getAuth();

@@ -1,11 +1,13 @@
 'use client'
 import styles from "@/app/scrollStyle/scrollStyle.module.css";
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef } from 'react';
 import Navbar from "../../../comps/Navbar";
-import { imageDB } from "../../../firebase.config";
+import { imageDB, clothesDB } from "../../../firebase.config";
 import { getAuth, onAuthStateChanged } from "firebase/auth"
 import { getDownloadURL, ref, uploadString, listAll } from 'firebase/storage';
 import ImageCarouselSS from "../../../comps/ImageCarouselSS";
+import { v4 } from 'uuid'
+import { collection, addDoc } from "firebase/firestore";
 
 
 const scrollStyle = () => {
@@ -16,6 +18,9 @@ const scrollStyle = () => {
      const [imgURL, setImgURL] = useState([]);
      const [user, setUser] = useState([]);
      const [imagesUploaded, hasImages] = useState(true);
+     const [currentSlide, setCurrentSlide] = useState(0);
+
+     const carouselRefs = [useRef(null), useRef(null), useRef(null)];
  
      useEffect(() => {
          const unsubscribe = onAuthStateChanged(currentAuth, (user) => {
@@ -51,18 +56,46 @@ const scrollStyle = () => {
          
      }, [currentAuth]);
  
+
+    const  handleSlideChange = (index) => {
+
+        setCurrentSlide(index);
+
+    }
+
      const saveOutfit = async () => {
-         const uid = user.uid;
-         try {
-             const outfitRef = ref(imageDB, `users/${uid}/${v4()}.json`);
-             await uploadString(outfitRef, JSON.stringify(imgURL), 'raw');
-             console.log("Outfit saved successfully!");
-         }
-         catch (error) {
- 
-             console.error("Error saving outfit: ", error);
- 
-         }
+        const uid = user.uid;
+        const outfitImages = [];
+    
+        // Iterate over all carouselRefs
+        for (let i = 0; i < carouselRefs.length; i++) {
+            const carouselRef = carouselRefs[i].current;
+    
+            if (carouselRef) {
+                // Retrieve the src of the currently displayed image from each carousel
+                const imgElement = carouselRef.querySelector('.slick-active img');
+                const currentImgSrc = imgElement ? imgElement.src : null;
+                
+                // Add the src to the outfitImages array
+                outfitImages.push(currentImgSrc);
+            } else {
+                console.error("Carousel ref is undefined for index:", i);
+            }
+        }
+    
+        console.log("Outfit Images:", outfitImages);
+    
+        try {
+            const outfitRef = collection(clothesDB, `savedOutfits/${uid}/outfits`);
+            const docRef = await addDoc(outfitRef, {
+                images: outfitImages // Save the array of image srcs
+            });
+    
+            console.log("Outfit saved successfully with ID:", docRef.id);
+        } catch (error) {
+            console.error("Error saving outfit:", error);
+        }
+
      };
 
     return ( 
@@ -78,9 +111,11 @@ const scrollStyle = () => {
             )}
             <div className={styles.hero}>
                 <div className={styles.slideColumn}>
-                    <ImageCarouselSS />
-                    <ImageCarouselSS />
-                    <ImageCarouselSS />
+                    <ImageCarouselSS ref={carouselRefs[0]} imgURLs={imgURL} onSlideChange={() => handleSlideChange(0)} />
+                    <ImageCarouselSS ref={carouselRefs[1]} imgURLs={imgURL} onSlideChange={() => handleSlideChange(1)} />
+                    <ImageCarouselSS ref={carouselRefs[2]} imgURLs={imgURL} onSlideChange={() => handleSlideChange(2)} />
+                    <br />
+                    <br />
                     <button className={styles.button} onClick={saveOutfit}>Save Outfit</button>
                 </div>
             </div>

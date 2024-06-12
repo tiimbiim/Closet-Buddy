@@ -1,79 +1,53 @@
 'use client'
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, forwardRef} from 'react'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from 'react-slick';
 import { getAuth, onAuthStateChanged } from "firebase/auth"
 import { getDownloadURL, ref, uploadBytes, listAll, list } from 'firebase/storage';
-import {imageDB} from "../firebase.config"
+import { imageDB } from "../firebase.config"
 
 
-const settings = {      //https://react-slick.neostack.com/docs/example/ for me -tim
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-};
 
-const ImageCarouselSS = ({auth}) => {
+const ImageCarouselSS = forwardRef(({ imgURLs, onSlideChange }, ref) => {
+    
+    const settings = {      //https://react-slick.neostack.com/docs/example/ for me -tim
+        dots: false,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        afterChange: (currentSlide) => {
+            onSlideChange(currentSlide);
+        }
+    };
 
     const currentAuth = getAuth();
 
-   //const [img, setImg] = useState('');
     const [imgURL, setImgURL] = useState([]);
-    const [user, setUser] = useState([]);
-    const [imagesUploaded, hasImages] = useState(true);
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(currentAuth, (user) => {
-            if(user) {
-                setUser(user);
-                const uid = user.uid;
-                list(ref(imageDB, `user/${uid}/`)).then (imgs => {
-                    
-                    console.log(imgs);
-                    
-                    if(imgs.items.length === 0) { 
-                        console.log("user has no images uploaded");
-                        hasImages(false); 
-                    }
+        if (imgURLs.length > 0) {
+            setImgURL(imgURLs);
+        }
+    }, [imgURLs]);
 
-                    imgs.items.forEach((val) => {
-                        getDownloadURL(val).then((url) => {
-
-                            setImgURL((data) => [...data, url]);
-
-                        });
-                    });
-
-                })
-                .catch((error) => {
-                    alert(error.code);
-                });
-
-            }
-            else {
-
-            }
-
-        });
-
-        return() => unsubscribe();
-        
-    }, [currentAuth]);
 
 
     return ( 
-        <div>
+        <div ref={ref}>
 
             <Slider {...settings}>
-                {imgURL.map(dataVal => <div key={user.uid}><img alt="clothing image" src={dataVal} height="250px" width="250px" /></div>)}
+                {imgURL.map((dataVal, index) => (
+
+                    <div key ={index}><img alt="clothing image" src={dataVal} height="250px" width="250px" /></div>
+
+                ))}
                 {/* {images.map(image => <Image className={styles.imageSetting} src={image} width={200} height={450}/>)} */}
             </Slider>
 
         </div>
      );
-}
+});
  
 export default ImageCarouselSS;
