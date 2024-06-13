@@ -113,9 +113,9 @@ const scrollStyle = () => {
             )}
             <div className={styles.hero}>
                 <div className={styles.slideColumn}>
-                    <ImageCarouselSS ref={carouselRefs[0]} imgURLs={imgURL} onSlideChange={() => handleSlideChange(0)} />
-                    <ImageCarouselSS ref={carouselRefs[1]} imgURLs={imgURL} onSlideChange={() => handleSlideChange(1)} />
-                    <ImageCarouselSS ref={carouselRefs[2]} imgURLs={imgURL} onSlideChange={() => handleSlideChange(2)} />
+                    <ImageCarouselSS ref={carouselRefs[0]} imgURLs={imgURL} onSlideChange={() => handleSlideChange(0)} category={"tops"}/>
+                    <ImageCarouselSS ref={carouselRefs[1]} imgURLs={imgURL} onSlideChange={() => handleSlideChange(1)} category={"bottoms"}/>
+                    <ImageCarouselSS ref={carouselRefs[2]} imgURLs={imgURL} onSlideChange={() => handleSlideChange(2)} category={"shoes"}/>
                     <br />
                     <br />
                     <button className={styles.button} onClick={saveOutfit}>Save Outfit</button>

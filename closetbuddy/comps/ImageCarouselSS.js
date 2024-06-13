@@ -1,15 +1,15 @@
 'use client'
-import React, {useState, useEffect, forwardRef} from 'react'
+import React, {useState, useEffect, forwardRef } from 'react'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from 'react-slick';
-import { getAuth, onAuthStateChanged } from "firebase/auth"
-import { getDownloadURL, ref, uploadBytes, listAll, list } from 'firebase/storage';
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getDownloadURL, ref, listAll } from 'firebase/storage';
 import { imageDB } from "../firebase.config"
 
 
 
-const ImageCarouselSS = forwardRef(({ imgURLs, onSlideChange }, ref) => {
+const ImageCarouselSS = forwardRef(({ category, imgURLs, onSlideChange }, ref) => {
     
     const settings = {      //https://react-slick.neostack.com/docs/example/ for me -tim
         dots: false,
@@ -25,6 +25,35 @@ const ImageCarouselSS = forwardRef(({ imgURLs, onSlideChange }, ref) => {
     const currentAuth = getAuth();
 
     const [imgURL, setImgURL] = useState([]);
+    const [user, setUser] = useState([]);
+
+
+    useEffect(() => {
+        const currentAuth = getAuth();
+        const unsubscribe = onAuthStateChanged(currentAuth, (user) => {
+            if (user) {
+                setUser(user);
+                const uid = user.uid;
+
+                // Fetch images from the specified category
+                const categoryRef = ref(imageDB, `user/${uid}/${category}/`);
+                listAll(categoryRef).then((imgRefs) => {
+                    const fetchPromises = imgRefs.items.map((imgRef) =>
+                        getDownloadURL(imgRef)
+                    );
+
+                    Promise.all(fetchPromises).then((urls) => {
+                        setImgURL(urls);
+                    });
+                }).catch((error) => {
+                    console.error("Error fetching images:", error);
+                });
+            }
+        });
+
+        return () => unsubscribe();
+    }, [category]);
+
 
     useEffect(() => {
         if (imgURLs.length > 0) {

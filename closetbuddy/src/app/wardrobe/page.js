@@ -10,12 +10,18 @@ const wardrobe = () => {
         <>
             <Navbar/>
             <div className={styles.hero}>
-                <h1 className={styles.category}>TOPS</h1>
-                <ImageCarouselWardrobe />
-                <h1 className={styles.category}>BOTTOMS</h1>
-                <ImageCarouselWardrobe />
-                <h1 className={styles.category}>SHOES</h1>
-                <ImageCarouselWardrobe />
+                <div className={styles.column}>
+                    <h1 className={styles.category}>TOPS</h1>
+                    <ImageCarouselWardrobe category="tops" />
+                </div>
+                <div className={styles.column}>
+                    <h1 className={styles.category}>BOTTOMS</h1>
+                    <ImageCarouselWardrobe category="bottoms" />
+                </div>
+                <div className={styles.column}>
+                    <h1 className={styles.category}>SHOES</h1>
+                    <ImageCarouselWardrobe category="shoes" />
+                </div>
             </div>
         </>
 

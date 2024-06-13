@@ -1,5 +1,6 @@
 'use client'
 import React, {useState, useEffect} from 'react'
+import styles from "@/app/wardrobe/wardrobe.module.css"
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from 'react-slick';
@@ -16,7 +17,7 @@ const settings = {      //https://react-slick.neostack.com/docs/example/ for me 
     slidesToScroll: 1,
 };
 
-const ImageCarouselWardrobe = ({auth}) => {
+const ImageCarouselWardrobe = ({ category }) => {
 
     const currentAuth = getAuth();
 
@@ -30,7 +31,7 @@ const ImageCarouselWardrobe = ({auth}) => {
             if(user) {
                 setUser(user);
                 const uid = user.uid;
-                list(ref(imageDB, `user/${uid}/`)).then (imgs => {
+                list(ref(imageDB, `user/${uid}/${category}/`)).then (imgs => {
                     
                     console.log(imgs);
                     
@@ -65,10 +66,9 @@ const ImageCarouselWardrobe = ({auth}) => {
 
 
     return ( 
-        <div>
-
+        <div className={styles.carouselContainer}>
             <Slider {...settings}>
-                {imgURL.map(dataVal => <div key={user.uid}><img alt="clothing image" src={dataVal} height="450px" width="450px" /></div>)}
+                {imgURL.map(dataVal => <div key={user.uid}><img alt="clothing image" src={dataVal} height="450px" width="450px" className={styles.carouselImage}/></div>)}
                 {/* {images.map(image => <Image className={styles.imageSetting} src={image} width={200} height={450}/>)} */}
             </Slider>
 
