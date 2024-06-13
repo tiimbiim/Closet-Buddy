@@ -12,12 +12,12 @@ import {v4} from "uuid";
 
 
 const aiPage = () => {
-    const [uploadFileURL, setUploadFileURL] = useState('');
     const [img, setImg] = useState('');
     const [imgURL, setImgURL] = useState([]);
     const [user, setUser] = useState([]);
     const [selectedFile, setSelectedFile] = useState()
     const [preview, setPreview] = useState()
+    const [category, setCategory] = useState('');
 
     const currentAuth = getAuth();
 
@@ -52,10 +52,10 @@ const aiPage = () => {
     
     const handleUploadFile = () => {
 
-        if(user && img) {
+        if(user && img && category) {
 
             const uid = user.uid;
-            const imgRef = ref(imageDB, `user/${uid}/${v4()}`);
+            const imgRef = ref(imageDB, `user/${uid}/${category}/${v4()}`);
             uploadBytes(imgRef, img).then((value) => {
 
                 getDownloadURL(value.ref).then((url) => {
@@ -63,15 +63,22 @@ const aiPage = () => {
                     setImgURL((data) => [...data, url]);
                     console.log("Image uploaded successfully:", url);
                     alert("Image uploaded successfully!");
+                    setCategory('');
                 }).catch(error => {
                     console.error("Error uploading image: ", error);
                     alert("Error uploading image: ", error);
+                    setCategory('');
                 })
 
             }).catch(error => {
                 console.error("Error uploading image: ", error);
                 alert("Error uploading image: ", error);
             })
+
+        }
+        else {
+
+            alert("Please select a category and an image.");
 
         }
 
@@ -103,18 +110,34 @@ const aiPage = () => {
     }
 
 
+    const handleCategoryChange = (e) => {
+        setCategory(e.target.value);
+    }
+
     return (
         <>
             <Navbar />
+            <div className={styles.radioContainer}>
+                <label>
+                    <input type="radio" value="tops" checked={category === 'tops'} onChange={handleCategoryChange} />
+                    Top
+                </label>
+                <label>
+                    <input type="radio" value="bottoms" checked={category === 'bottoms'} onChange={handleCategoryChange} />
+                    Bottoms
+                </label>
+                <label>
+                    <input type="radio" value="shoes" checked={category === 'shoes'} onChange={handleCategoryChange} />
+                    Shoes
+                </label>
+            </div>
             <div className={styles.hero}>
                 <div className={styles.card}>
-                    {/* {uploadFileURL ?  imgURL.map(dataVal=> <img src={dataVal} height="200px" width="200px"/> ) : <FaUpload className={styles.icon}/>} */}
-                    {/* <h1>something</h1> */}
-                    {/* <FaUpload className={styles.icon} id='default'/> */}
-                    {/* <input type='file' accept='image/jpeg, image/png, image/jpg' id= 'input-file' onClick={handleUploadFile}/> */}
-                    {/* <label for='input-file'>upload image</label> <br/> */}
                     {selectedFile && <img src={preview} height={250} width={250} />}
                     <input className={styles.selectFileButton} type='file' accept='image/jpeg, image/png, image/jpg' onChange={onSelectFile}/>
+
+
+
                     <button className = {styles.uploadButton} onClick={handleUploadFile}>upload image</button>
                 </div>
             </div>
