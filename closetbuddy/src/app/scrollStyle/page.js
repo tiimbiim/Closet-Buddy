@@ -88,10 +88,12 @@ const scrollStyle = () => {
         try {
             const outfitRef = collection(clothesDB, `savedOutfits/${uid}/outfits`);
             const docRef = await addDoc(outfitRef, {
+                owner: user.uid,
                 images: outfitImages // Save the array of image srcs
             });
     
             console.log("Outfit saved successfully with ID:", docRef.id);
+            alert("Outfit saved successfully with ID:", docRef.id);
         } catch (error) {
             console.error("Error saving outfit:", error);
         }
